@@ -7,10 +7,7 @@ A Django REST API backend for a hospital management system.
 - **Appointment Management**: Schedule and manage patient appointments.
 - **Blog System**: Publish and manage blog posts.
 - **Contact Form**: Handle user contact messages.
-- **Doctor Profiles**: Manage doctor information and profiles.
 - **Image Gallery**: Upload and display gallery images.
-- **Health Packages**: Define and manage health service packages.
-- **Pharmacy Inventory**: Manage pharmacy items and stock.
 - **Services**: List hospital services.
 - **User Authentication**: JWT-based authentication with registration and profile management.
 - **Admin Panel**: Django admin interface for data management.
@@ -64,10 +61,7 @@ The API will be available at `http://127.0.0.1:8000/`.
 - `/api/appointments/`: Appointment management
 - `/api/blogposts/`: Blog post management
 - `/api/contactmessages/`: Contact message management
-- `/api/doctors/`: Doctor profile management
 - `/api/galleryimages/`: Image gallery management
-- `/api/healthpackages/`: Health package management
-- `/api/pharmacyitems/`: Pharmacy item management
 - `/api/services/`: Service management
 
 ### Documentation
