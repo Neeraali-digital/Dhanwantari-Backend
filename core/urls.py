@@ -8,7 +8,9 @@ from .views import (
     GalleryImageViewSet,
     HealthPackageViewSet,
     PharmacyItemViewSet,
-    ServiceViewSet
+    ServiceViewSet,
+    RegisterView,
+    UserProfileView
 )
 
 router = DefaultRouter()
@@ -23,4 +25,6 @@ router.register(r'services', ServiceViewSet)
 
 urlpatterns = [
     path('', include(router.urls)),
+    path('register/', RegisterView.as_view(), name='register'),
+    path('profile/', UserProfileView.as_view(), name='profile'),
 ]
