@@ -1,8 +1,10 @@
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
 from .views import (
+    AdvertisementViewSet,
     AppointmentViewSet,
     BlogPostViewSet,
+    CheckupPackageViewSet,
     ContactMessageViewSet,
     DoctorViewSet,
     GalleryImageViewSet,
@@ -14,8 +16,10 @@ from .views import (
 )
 
 router = DefaultRouter()
+router.register(r'advertisements', AdvertisementViewSet)
 router.register(r'appointments', AppointmentViewSet)
 router.register(r'blogposts', BlogPostViewSet)
+router.register(r'checkuppackages', CheckupPackageViewSet)
 router.register(r'contactmessages', ContactMessageViewSet)
 router.register(r'doctors', DoctorViewSet)
 router.register(r'galleryimages', GalleryImageViewSet)

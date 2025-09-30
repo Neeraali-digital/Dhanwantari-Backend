@@ -1,8 +1,10 @@
 from rest_framework import serializers
 from django.contrib.auth.models import User
 from .models import (
+    Advertisement,
     Appointment,
     BlogPost,
+    CheckupPackage,
     ContactMessage,
     Doctor,
     GalleryImage,
@@ -12,13 +14,45 @@ from .models import (
 )
 
 class AppointmentSerializer(serializers.ModelSerializer):
+    date = serializers.DateField(write_only=True, required=True)
+    time = serializers.TimeField(write_only=True, required=True)
+    reason = serializers.CharField(required=True)
+
     class Meta:
         model = Appointment
-        fields = '__all__'
+        fields = ['id', 'patient_name', 'doctor_name', 'reason', 'date', 'time', 'status']
+
+    def create(self, validated_data):
+        date = validated_data.pop('date', None)
+        time = validated_data.pop('time', None)
+        if date and time:
+            from datetime import datetime
+            validated_data['appointment_date'] = datetime.combine(date, time)
+        return super().create(validated_data)
+
+    def update(self, instance, validated_data):
+        date = validated_data.pop('date', None)
+        time = validated_data.pop('time', None)
+        if date and time:
+            from datetime import datetime
+            validated_data['appointment_date'] = datetime.combine(date, time)
+        return super().update(instance, validated_data)
+
+    def to_representation(self, instance):
+        representation = super().to_representation(instance)
+        if instance.appointment_date:
+            representation['date'] = instance.appointment_date.date()
+            representation['time'] = instance.appointment_date.time()
+        return representation
 
 class BlogPostSerializer(serializers.ModelSerializer):
     class Meta:
         model = BlogPost
+        fields = '__all__'
+
+class CheckupPackageSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = CheckupPackage
         fields = '__all__'
 
 class ContactMessageSerializer(serializers.ModelSerializer):
@@ -49,6 +83,11 @@ class PharmacyItemSerializer(serializers.ModelSerializer):
 class ServiceSerializer(serializers.ModelSerializer):
     class Meta:
         model = Service
+        fields = '__all__'
+
+class AdvertisementSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Advertisement
         fields = '__all__'
 
 class UserSerializer(serializers.ModelSerializer):
