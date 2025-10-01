@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-c4(sxxw3)6j%-vv_4#@2yrui6y@_+97x!i4ganqr!o&3i=*w)h
 DEBUG = True
 
 
-ALLOWED_HOSTS = ['34.229.12.11','dhanwantari-frontend.vercel.app','.vercel.app']
+ALLOWED_HOSTS = ['api.neeraali.com','dhanwantari-frontend.vercel.app','.vercel.app']
 
 # Application definition
 
