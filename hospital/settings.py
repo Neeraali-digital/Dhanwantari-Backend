@@ -57,7 +57,6 @@ MIDDLEWARE = [
 
 CORS_ALLOWED_ORIGINS = [
     "https://dhanwantari-frontend.vercel.app",
-    "https://dhanwantari-frontend.vercel.app/"
 ]
 
 CORS_ALLOW_CREDENTIALS = True
