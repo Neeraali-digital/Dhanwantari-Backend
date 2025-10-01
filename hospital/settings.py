@@ -57,6 +57,7 @@ MIDDLEWARE = [
 
 CORS_ALLOWED_ORIGINS = [
     "https://dhanwantari-frontend.vercel.app",
+    "http://localhost:4200",
 ]
 
 CORS_ALLOW_CREDENTIALS = True
