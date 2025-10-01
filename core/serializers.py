@@ -20,7 +20,7 @@ class AppointmentSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Appointment
-        fields = ['id', 'patient_name', 'doctor_name', 'reason', 'date', 'time', 'status']
+        fields = ['id', 'patient_name', 'doctor_name', 'reason', 'status', 'date', 'time']
 
     def create(self, validated_data):
         date = validated_data.pop('date', None)
@@ -40,9 +40,12 @@ class AppointmentSerializer(serializers.ModelSerializer):
 
     def to_representation(self, instance):
         representation = super().to_representation(instance)
-        if instance.appointment_date:
+        if hasattr(instance, 'appointment_date') and instance.appointment_date:
             representation['date'] = instance.appointment_date.date()
             representation['time'] = instance.appointment_date.time()
+        else:
+            representation['date'] = None
+            representation['time'] = None
         return representation
 
 class BlogPostSerializer(serializers.ModelSerializer):
